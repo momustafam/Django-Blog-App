@@ -15,10 +15,15 @@ class Dev(Configuration):
         # Quick-start development settings - unsuitable for production
         # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
+        ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+        ACCOUNT_EMAIL_REQUIRED = True
+        ACCOUNT_USERNAME_REQUIRED = False
+        ACCOUNT_AUTHENTICATION_METHOD = "email"
+
         # SECURITY WARNING: keep the secret key used in production secret!
         SECRET_KEY = 'django-insecure-+sn%dpa!086+g+%44z9*^j^q-u4n!j(#wl)x9a%_1op@zz2+1-'
         DEBUG = values.BooleanValue(True)
-
+        SITE_ID = 1
         ALLOWED_HOSTS = ['*']
         X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
         CSRF_COOKIE_SAMESITE = None
@@ -36,11 +41,16 @@ class Dev(Configuration):
             'django.contrib.sessions',
             'django.contrib.messages',
             'django.contrib.staticfiles',
+            'django.contrib.sites',
             'debug_toolbar',
             'blango_auth',
             'blog',
             'crispy_forms',
             'crispy_bootstrap5',
+            'allauth',
+            'allauth.account',
+            'allauth.socialaccount',
+            'allauth.socialaccount.providers.google',
         ]
 
         MIDDLEWARE = [
