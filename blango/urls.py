@@ -10,6 +10,7 @@ import blog.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("blog.urls")),
+    path('api/v1/', include("blog.api_urls")),
     path(
         "accounts/register/",
         RegistrationView.as_view(form_class=BlangoRegistrationForm),
